@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+#define endl "\n"
+const long long mod = 1e9 + 7;
+using namespace std;
+
+long long n,k;
+long long f[100];
+
+void tinh() {
+	if (n == 1)  {
+		cout << "A" << endl;
+	}
+	else if (n == 2) {
+		cout << "B" << endl;
+	} else {
+		if (k > f[n - 2]) {
+			k = k - f[n - 2];
+			n--;
+		} else {
+			n = n - 2;
+		}
+		tinh();
+	}
+}
+
+void sinh() {
+	f[0] = 0;
+	f[1] = 1;
+	f[2] = 1;
+	for (int i = 3; i < 93; i++) {
+		f[i] = f[i - 2] + f[i - 1];
+	}
+	tinh();
+}
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		cin >> n >> k;
+		sinh();
+	}
+}
